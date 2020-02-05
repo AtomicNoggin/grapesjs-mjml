@@ -12,7 +12,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       defaults: {
         name: 'Section',
         draggable: '[data-gjs-type=mj-body], [data-gjs-type=mj-wrapper]',
-        droppable: '[data-gjs-type=mj-column]',
+        droppable: '[data-gjs-type=mj-column], [data-gjs-type=mj-group]',
         'style-default': {
           'padding-top': '10px',
           'padding-bottom': '10px',

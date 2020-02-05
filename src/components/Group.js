@@ -20,7 +20,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       ...coreMjmlView,
       tagName: 'div',
       attributes: {
-        style: 'pointer-events: all; display: table; width: 100%',
+        style: 'pointer-events: all; display:inline-block;',
       },
 
       getMjmlTemplate() {
