@@ -84,7 +84,12 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
 
       getMjmlTemplate() {
         // Need it for responsive columns
-        let cols = this.model.collection.length - 1;
+        let cols = this.model.collection.models.filter( model => 
+          model.attributes && 
+          model.attributes.type && 
+          model.attributes.type.toLowerCase() !== "textnode"
+        ).length - 1;
+        console.log(this.model.collection)
         cols = cols ? cols : 0;
         let addColmn = Array(cols).fill('<mj-column></mj-column>').join('');
 
