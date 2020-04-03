@@ -3,6 +3,7 @@ import loadComponents from './components';
 import loadCommands from './commands';
 import loadButtons from './buttons';
 import loadStyle from './style';
+import mjml2html from 'mjml';
 
 const masterPlugin = (editor, opt = {}) => {
   const config = editor.getConfig();
@@ -99,3 +100,4 @@ export const componentsPlugin = masterPlugin.componentsPlugin = loadComponents;
 export const commandsPlugin = masterPlugin.commandsPlugin =  loadCommands;
 export const buttonsPlugin = masterPlugin.buttonsPlugin = loadButtons;
 export const stylePlugin = masterPlugin.stylePlugin = loadStyle;
+export const mjml2htmlCommand = masterPlugin.mjml2htmlCommand = mjml2html;
