@@ -13,7 +13,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       defaults: {
         name: 'Image',
         resizable: false,
-        highlightable: false,
+        highlightable: true,
         draggable: '[data-gjs-type=mj-column],[data-gjs-type=mj-section], [data-gjs-type=mj-hero]',
         stylable: [
           'width', 'height',
@@ -23,10 +23,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
           'container-background-color', 'align',
         ],
         'style-default': {
-          'padding-top': '10px',
-          'padding-bottom': '10px',
-          'padding-right': '25px',
-          'padding-left': '25px',
+          'padding-top': '10px 25px 10px 25px',
           'align': 'center',
         },
         traits: ['href', 'rel', 'alt', 'title'],
@@ -36,20 +33,20 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
 
     view: {
       ...coreMjmlView,
-      tagName: 'tr',
+      tagName: 'table',
       attributes: {
         style: 'pointer-events: all; display: table; width: 100%; user-select: none;',
       },
 
       getMjmlTemplate() {
         return {
-          start: `<mjml><mj-body><mj-column>`,
-          end: `</mj-column></mj-body></mjml>`,
+          start: `<mjml><mj-body><mj-section><mj-column>`,
+          end: `</mj-column></mj-section></mj-body></mjml>`,
         };
       },
 
       getTemplateFromEl(sandboxEl) {
-        return sandboxEl.querySelector('tr').innerHTML;
+        return sandboxEl.querySelector('table table').innerHTML;
       },
 
       getChildrenSelector() {

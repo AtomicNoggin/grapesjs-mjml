@@ -2,8 +2,18 @@ export default (editor, opt = {}) => {
 
   if (opt.resetStyleManager) {
     const sectors = editor.StyleManager.getSectors();
-
+    
     editor.on('load', () => {
+      editor.StyleManager.properties.add({
+          name: 'Text Direction',
+          property: 'direction',
+          type: 'radio',
+          defaults: 'ltr',
+          list: [
+              { value: 'ltr', name: 'Left to Right', className: 'fa fa-arrow-to-right'},
+              { value: 'rtl', name: 'Right to Left', className: 'fa fa-arrow-to-left'}
+          ]
+        })
       sectors.reset();
       sectors.add([{
         name: 'Dimension',
@@ -35,7 +45,7 @@ export default (editor, opt = {}) => {
       }, {
         name: 'Typography',
         open: false,
-        buildProps: ['font-family', 'font-size', 'font-weight', 'letter-spacing', 'color', 'line-height', 'text-align', 'align', 'text-decoration'],
+        buildProps: ['font-family', 'font-size', 'font-weight', 'letter-spacing', 'color', 'line-height', 'text-align', 'align', 'text-decoration', 'direction'],
         properties: [
           { name: 'Font', property: 'font-family' },
           { name: 'Weight', property: 'font-weight' },
@@ -70,6 +80,32 @@ export default (editor, opt = {}) => {
               { value: 'line-through', name: 'Line-through', className: 'fa fa-strikethrough' }
             ],
           }],
+      },
+      {
+        name: 'Advanced',
+        open: true,
+        buildProps: ['direction'],
+        properties:[{
+          name: 'Text Direction',
+          property: 'direction',
+          type: 'radio',
+          defaults: 'ltr',
+          list: [
+              { value: 'ltr', name: 'Left to Right', className: 'fa fa-arrow-to-right'},
+              { value: 'rtl', name: 'Right to Left', className: 'fa fa-arrow-to-left'}
+          ]
+        },
+        {name:"Vertical Align",
+         property: 'direction',
+         type:'radio',
+         defaults:'top',
+         list: [
+          { value: 'top', name: 'Top'},
+          { value: 'middle', name: 'Middle'},
+          { value: 'bottom', name: 'Bottom'}
+      ]
+
+      }]
       }, {
         name: 'Decorations',
         open: false,

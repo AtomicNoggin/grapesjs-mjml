@@ -14,17 +14,16 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         draggable: '[data-gjs-type=mj-body], [data-gjs-type=mj-wrapper]',
         droppable: '[data-gjs-type=mj-column]',
         'style-default': {
-          'padding-top': '10px',
-          'padding-bottom': '10px',
+          'padding': '10px 10px',
           'vertical-align': 'top',
           'text-align': 'center',
         },
         stylable: [
-          'vertical-align', 'text-align',
-          'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
-          'background-color', 'background-url', 'background-repeat', 'background-size',
+          'background-color', 'background-repeat', 'background-size', 'background-url',
+          'border', 'border-width', 'border-style', 'border-color',
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
-          'border', 'border-width', 'border-style', 'border-color'
+          'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
+          'text-align', 'direction'
         ],
       },
     },
