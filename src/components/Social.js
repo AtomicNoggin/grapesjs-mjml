@@ -16,16 +16,12 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         stylable: [
           'icon-size', 'text-decoration', 'align', 'font-family', 'font-size', 'line-height',
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
+          'inner-padding', 'inner-padding-top', 'inner-padding-left', 'inner-padding-right', 'inner-padding-bottom',
+          'icon-padding', 'icon-padding-top', 'icon-padding-left', 'icon-padding-right', 'icon-padding-bottom',
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
           'container-background-color',
-          'color',
+          'color', 'font-family', 'font-size', 'font-style', 'font-weight', 'line-height', 'text-decoration'
         ],
-        'style-default': {
-          'align': 'center',
-          'icon-size': '20px',
-          'font-size': '13px',
-          'line-height': '22px',
-        },
         traits: [
           {
             type: 'select',

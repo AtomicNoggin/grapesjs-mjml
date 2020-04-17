@@ -187,7 +187,6 @@ export default (editor, opt = {}) => {
       html = html.substring(start, end).trim();
       sandboxEl.innerHTML = html;
       const templateOutput = this.getTemplateFromEl(sandboxEl)
-      /*
       console.groupCollapsed('getTemplateFromMjml ' + this.model.attributes.tagName)
       console.log("=================================================");
       console.log(mjmlInput);
@@ -197,7 +196,6 @@ export default (editor, opt = {}) => {
       console.log(templateOutput);
       console.log("=================================================");
       console.groupEnd('getTemplateFromMjml ' + this.model.attributes.tagName)
-       */
       return templateOutput;
     },
 

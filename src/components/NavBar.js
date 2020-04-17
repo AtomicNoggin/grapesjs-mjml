@@ -12,21 +12,20 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
         name: 'NavBar',
         draggable: '[data-gjs-type=mj-column],[data-gjs-type=mj-hero]',
         droppable: '[data-gjs-type=mj-navbar-link]',
-        'style-default': {
-          // TODO
-        },
         stylable: [
-          // TODO
+          'align','ico-align','ico-color',
+          'ico-padding','ico-padding-top','ico-padding-right','ico-padding-bottom','ico-padding-left',
+          'ico-font-size','ico-line-height',
+          // TODO: ico-close, ico-open, ico-font-family, ico-text-decoration, ico-text-transform
         ],
         traits: [
+          {label:'Base URL', name:'base-url'},
           {
-            type: 'select',
+            type: 'checkbox',
             label: 'Hamburger',
             name: 'hamburger',
-            options: [
-              { value: 'hamburger', name: 'ON' },
-              { value: '', name: 'OFF' },
-            ]
+            valueTrue: 'hamburger',
+            valueFalse: ''
           }
         ],
       },
@@ -35,7 +34,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
     view: {
       ...coreMjmlView,
 
-      tagName: 'tr',
+      tagName: 'table',
 
       attributes: {
         style: 'pointer-events: all; display: table; width: 100%',
@@ -49,10 +48,11 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
       getTemplateFromMjml() {
         let mjmlTmpl = this.getMjmlTemplate();
         let innerMjml = this.getInnerMjmlTemplate();
-        const htmlOutput = mjml2html(`${mjmlTmpl.start}
-          ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`);
+        const mjmlInput = `${mjmlTmpl.start}
+        ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`;
+        const htmlOutput = mjml2html(mjmlInput);
         let html = htmlOutput.html;
-
+  
         // I need styles for hamburger
         let styles = [];
         sandboxEl.innerHTML = html;
@@ -62,12 +62,13 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
         });
 
 
-        let content = html.replace(/<body(.*)>/, '<body>');
-        let start = content.indexOf('<body>') + 6;
-        let end = content.indexOf('</body>');
-        sandboxEl.innerHTML = content.substring(start, end).trim();
+        html = html.replace(/<body(.*)>/, '<body>');
+        let start = html.indexOf('<body>') + 6;
+        let end = html.indexOf('</body>');
+        html = html.substring(start, end).trim();
+        sandboxEl.innerHTML = html;
         let componentEl = this.getTemplateFromEl(sandboxEl);
-
+        const templateOutput = componentEl.innerHTML
         // Copy all rendered attributes (TODO need for all)
         let attributes = {};
         const elAttrs = componentEl.attributes;
@@ -76,10 +77,19 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
           elAttr = elAttrs[i];
           attributes[elAttr.name] = elAttr.value;
         }
+        console.groupCollapsed('getTemplateFromMjml ' + this.model.attributes.tagName)
+        console.log("=================================================");
+        console.log(mjmlInput);
+        console.log("+++++++++++++++++++++++++++++++++++++++++++++++++");
+        console.log(html);
+        console.log("+++++++++++++++++++++++++++++++++++++++++++++++++");
+        console.log(templateOutput);
+        console.log("=================================================");
+        console.groupEnd('getTemplateFromMjml ' + this.model.attributes.tagName)
 
         return {
           attributes,
-          content: componentEl.innerHTML,
+          content: templateOutput,
           style: styles.join(' ')
         };
       },
@@ -98,13 +108,13 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
 
       getMjmlTemplate() {
         return {
-          start: `<mjml><mj-body><mj-column>`,
-          end: `</mj-column></mj-body></mjml>`,
+          start: `<mjml><mj-body><mj-section><mj-column>`,
+          end: `</mj-column></mj-section></mj-body></mjml>`,
         };
       },
 
       getTemplateFromEl(sandboxEl) {
-        return sandboxEl.firstChild.querySelector('tr');
+        return sandboxEl.firstChild.querySelector('table table');
       },
 
       getChildrenSelector() {
