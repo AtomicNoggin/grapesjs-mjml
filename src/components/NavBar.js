@@ -77,16 +77,6 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
           elAttr = elAttrs[i];
           attributes[elAttr.name] = elAttr.value;
         }
-        console.groupCollapsed('getTemplateFromMjml ' + this.model.attributes.tagName)
-        console.log("=================================================");
-        console.log(mjmlInput);
-        console.log("+++++++++++++++++++++++++++++++++++++++++++++++++");
-        console.log(html);
-        console.log("+++++++++++++++++++++++++++++++++++++++++++++++++");
-        console.log(templateOutput);
-        console.log("=================================================");
-        console.groupEnd('getTemplateFromMjml ' + this.model.attributes.tagName)
-
         return {
           attributes,
           content: templateOutput,
