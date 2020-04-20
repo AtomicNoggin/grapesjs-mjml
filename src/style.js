@@ -90,6 +90,22 @@ export default (editor, opt = {}) => {
             units: ['px', '%'],
             fixedValues:['auto','cover','contain','inherit','initial']
           }, {
+            type:'integer',
+            property:'background-width',
+            name:'Width',
+            min: 0,
+            placeholder: 'auto',
+            units: ['px', '%'],
+            fixedValues:['auto','cover','contain','inherit','initial']
+          },{
+            type:'integer',
+            property:'background-height',
+            name:'Height',
+            min: 0,
+            placeholder: 'auto',
+            units: ['px', '%'],
+            fixedValues:['auto','cover','contain','inherit','initial']
+          }, {
             type: 'select',
             property: 'background-repeat',
             name: 'Repeat',
