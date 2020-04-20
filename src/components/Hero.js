@@ -19,7 +19,6 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         droppable,
         stylable: [
           'background-color','background-image','background-url','background-width','background-height','background-repeat',
-          'background-width',
           'height', 'width', 
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom', 
           'vertical-align'
