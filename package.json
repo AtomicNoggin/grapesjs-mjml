@@ -23,7 +23,8 @@
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "mjml": "4.4.1"
+    "mjml": "4.5.1",
+    "mjml-core": "4.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
