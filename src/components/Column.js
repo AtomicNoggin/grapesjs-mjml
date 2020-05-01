@@ -13,19 +13,10 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
         name: 'Column',
         draggable: '[data-gjs-type=mj-section]',
         stylable: [
-          'background-color', 'vertical-align',
-          'border-detached', 'border-width', 'border-style', 'border-color',
+          'background-color', 'vertical-align', 'width',
+          'border', 'border-width', 'border-style', 'border-color',
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
-        ],
-        traits:[
-          {
-            type:'number',
-            name:'width',
-            label:'Column width',
-            min: 0,
-            units: ['%', 'px']
-          },
         ],
       },
     },

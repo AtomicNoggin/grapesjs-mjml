@@ -17,24 +17,12 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         name: 'Hero',
         draggable: '[data-gjs-type=mj-body]',
         droppable,
-        stylable: [
-          'background-color', 'background-height', 'background-position', 'background-url',
-          'background-width', 'css-class', 'height', 'mode', 'padding', 'padding-top',
-          'padding-left', 'padding-right', 'padding-bottom', 'vertical-align', 'width'
-        ],
-        traits: [
-          {
-            type: 'select',
-            name: 'mode',
-            Label: 'Layout Mode',
-            defaults:'fluid-height',
-            options: [
-              {value:'fluid-height',name:'Fluid Height'},
-              {value:'fixed-height',name:'Fixed Height'},
-            ],
-          }
-        ]
       },
+      stylable: [
+        'background-color', 'background-height', 'background-position', 'background-url',
+        'background-width', 'css-class', 'height', 'mode', 'padding', 'padding-top',
+        'padding-left', 'padding-right', 'padding-bottom', 'vertical-align', 'width'
+      ],
     },
 
     view: {
@@ -52,7 +40,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       },
 
       getChildrenSelector() {
-        return '.mj-hero-content';
+        return 'table tr td';
       },
 
     }

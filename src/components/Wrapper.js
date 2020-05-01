@@ -13,22 +13,6 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         name: 'Wrapper',
         draggable: '[data-gjs-type=mj-body]',
         droppable: '[data-gjs-type=mj-section]',
-        stylable: [
-          'background-color','background-image','background-url','background-size','background-repeat',
-          'border-detached', 'border-width', 'border-style', 'border-color',
-          'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
-          'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
-          'text-align', 'vertical-align'
-        ],
-        traits: [
-          {
-            type:'checkbox',
-            name:'full-width',
-            label:'Full Width',
-            valueTrue: 'full-width',
-            valueFalse: ''
-          },
-        ],
       },
     },
 

@@ -18,25 +18,22 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         stylable: ['width', 'height',
           'background-color', 'container-background-color',
           'font-style', 'font-size', 'font-weight', 'font-family', 'color',
-          'text-decoration', 'align','text-align',
+          'text-decoration', 'align',
           'vertical-align', 'text-transform',
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
-          'inner-padding', 'inner-padding-top', 'inner-padding-left', 'inner-padding-right', 'inner-padding-bottom',
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
-          'border-detached', 'border-width', 'border-style', 'border-color',
-        ],
-        traits: [
-          {name:"Link URL", property:"href", placeholder:"https://"},
-          {
-            name: 'Link Target', property: 'target', type: 'select',
-            options: [
-              { value: '', name: 'Default' },
-              { value: '_blank', name: 'New Window' },
-              { value: '_self', name: 'Same Window' },
-            ]
-          },
-          {label:"Link rel", name:"rel", placeholder:""},
-        ],
+          'border', 'border-width', 'border-style', 'border-color',],
+        'style-default': {
+          'background-color': '#414141',
+          'border-radius': '3px',
+          'font-size': '13px',
+          'font-weight': '400',
+          'color': '#ffffff',
+          'vertical-align': 'middle',
+          'padding': '10px 25px 10px 25px',
+          'align': 'center',
+        },
+        traits: ['href'],
         // 'container-background-color', 'inner-padding'
       },
     },

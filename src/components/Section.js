@@ -19,31 +19,11 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
           'text-align': 'center',
         },
         stylable: [
-          'background-color','background-image','background-url','background-size','background-repeat',
-          'border-detached', 'border-width', 'border-style', 'border-color',
+          'background-color', 'background-repeat', 'background-size', 'background-url',
+          'border', 'border-width', 'border-style', 'border-color',
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
           'text-align', 'direction'
-        ],
-        traits: [
-          {
-            type:'checkbox',
-            name:'full-width',
-            label:'Full Width',
-            valueTrue: 'full-width',
-            valueFalse: ''
-          },
-
-          {
-            type:'select',
-            name:'direction',
-            label:'Column Layout',
-            options: [
-              {value:'',name:'Default'},
-              {value:'ltr',name:'Left to Right'},
-              {value:'rtl',name:'Right to Left'},
-            ],
-          },
         ],
       },
     },

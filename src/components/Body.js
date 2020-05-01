@@ -23,7 +23,6 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
           'width',
           'background-color'
         ],
-        traits:[],
       },
     },
 

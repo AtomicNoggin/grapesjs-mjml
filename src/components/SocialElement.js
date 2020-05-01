@@ -13,13 +13,18 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         name: 'SocialElement',
         draggable: '[data-gjs-type=mj-social]',
         stylable: [
+          'text-decoration', 'align', 'font-family', 'font-size', 'line-height',
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
-          'icon-padding', 'icon-padding-top', 'icon-padding-left', 'icon-padding-right', 'icon-padding-bottom',
-          'text-padding', 'text-padding-top', 'text-padding-left', 'text-padding-right', 'text-padding-bottom',
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
           'background-color',
-          'color', 'font-family', 'font-size', 'font-style', 'font-weight', 'line-height', 'text-decoration'
+          'color',
         ],
+        'style-default': {
+          'align': 'center',
+          'icon-size': '20px',
+          'font-size': '13px',
+          'line-height': '22px',
+        },
         traits: [
           {
             type: 'select',
@@ -45,16 +50,8 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
               { value: 'xing', name: 'Xing' },
             ]
           },
-          { name: 'src', label: 'Custom icon URL'},
-          { name: 'href', label: 'Link URL' },
-          {
-            label: 'Link Target', name: 'target', type: 'select',
-            options: [
-              { value: '', name: 'Default' },
-              { value: ' _blank', name: 'New Tab' },
-              { value: ' _self', name: 'Same Tab' },
-            ]
-          },
+          { name: 'src' },
+          { name: 'href' },
         ],
       },
     },

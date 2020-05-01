@@ -24,11 +24,14 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         draggable: '[data-gjs-type=mj-column], [data-gjs-type=mj-hero]',
         highlightable: true,
         stylable: [
-          'height', 'font-style', 'font-size', 'font-weight', 'font-family',
+          'height', 'font-style', 'font-size', 'font-weight', 'font-family', 'color',
           'line-height', 'letter-spacing', 'text-decoration', 'align', 'text-transform',
           'padding','padding-left','padding-right','padding-top','padding-bottom', 'container-background-color'
         ],
-        traits: []
+        'style-default': {
+          'padding': '10px 25px 10px 25px',
+          'font-size': '13px',
+        },
       },
     },
 
