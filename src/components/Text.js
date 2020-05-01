@@ -20,7 +20,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: 'HTML',
+        name: 'Text',
         draggable: '[data-gjs-type=mj-column], [data-gjs-type=mj-hero]',
         highlightable: true,
         stylable: [
