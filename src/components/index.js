@@ -187,7 +187,6 @@ export default (editor, opt = {}) => {
       html = html.substring(start, end).trim();
       sandboxEl.innerHTML = html;
       const templateOutput = this.getTemplateFromEl(sandboxEl)
-      /* commented out for future debugging
       console.groupCollapsed('getTemplateFromMjml ' + this.model.attributes.tagName)
       console.log("=================================================");
       console.log(mjmlInput);
@@ -197,7 +196,6 @@ export default (editor, opt = {}) => {
       console.log(templateOutput);
       console.log("=================================================");
       console.groupEnd('getTemplateFromMjml ' + this.model.attributes.tagName)
-      */
       return templateOutput;
     },
 
@@ -207,28 +205,35 @@ export default (editor, opt = {}) => {
      * @private
      */
     renderChildren: function (appendChildren) {
+      console.groupCollapsed('renderChilderen ' + this.model.attributes.tagName)
       var container = this.getChildrenContainer();
+      console.log((container && container.outerHTML) || 'NO CHILD CONTAINER')
   
       // This trick will help perfs by caching children
       if (!appendChildren) {
+        console.log('not appendChildren');
         this.componentsView = new ComponentsView({
           collection: this.model.get('components'),
           config: this.config,
           defaultTypes: this.opts.defaultTypes,
           componentTypes: this.opts.componentTypes,
         });
+        console.log('before render container');
         this.childNodes = this.componentsView.render(container).el.childNodes;
       } else {
+        console.log('not appendChildren');
         this.componentsView.parentEl = container;
       }
 
       var childNodes = Array.prototype.slice.call(this.childNodes);
 
+      console.log('adding childNodes');
       for (var i = 0, len = childNodes.length; i < len; i++) {
         container.appendChild(childNodes.shift());
       }
 
       if (container !== this.el) {
+        console.log('container !== this.el');
         var disableNode = function (el) {
           var children = Array.prototype.slice.call(el.children);
           children.forEach(function (el) {
@@ -238,8 +243,11 @@ export default (editor, opt = {}) => {
             }
           });
         };
+        console.log('disable node');
         disableNode(this.el);
       }
+      console.groupEnd('renderChildren ' + this.model.attributes.tagName)
+
     },
 
 
