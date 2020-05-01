@@ -22,35 +22,41 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       defaults: {
         name: 'Text',
         draggable: '[data-gjs-type=mj-column], [data-gjs-type=mj-hero]',
-        highlightable: true,
+        highlightable: false,
         stylable: [
           'height', 'font-style', 'font-size', 'font-weight', 'font-family', 'color',
           'line-height', 'letter-spacing', 'text-decoration', 'align', 'text-transform',
-          'padding','padding-left','padding-right','padding-top','padding-bottom', 'container-background-color'
+          'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
+          'container-background-color'
         ],
         'style-default': {
-          'padding': '10px 25px 10px 25px',
+          'padding-top': '10px',
+          'padding-bottom': '10px',
+          'padding-right': '25px',
+          'padding-left': '25px',
           'font-size': '13px',
+          'line-height': '22px',
+          'align': 'left',
         },
       },
     },
 
     view: {
       ...coreMjmlView,
-      tagName: 'table',
+      tagName: 'tr',
       attributes: {
         style: 'pointer-events: all; display: table; width: 100%',
       },
 
       getMjmlTemplate() {
         return {
-          start: `<mjml><mj-body><mj-section><mj-column>`,
-          end: `</mj-column><mj-section></mj-body></mjml>`,
+          start: `<mjml><mj-body><mj-column>`,
+          end: `</mj-column></mj-body></mjml>`,
         };
       },
 
       getTemplateFromEl(sandboxEl) {
-        return sandboxEl.querySelector('table table').outerHTML;
+        return sandboxEl.querySelector('tr').innerHTML;
       },
 
       getChildrenSelector() {

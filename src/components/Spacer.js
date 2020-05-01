@@ -21,20 +21,20 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
 
     view: {
       ...coreMjmlView,
-      tagName: 'table',
+      tagName: 'tr',
       attributes: {
         style: 'pointer-events: all; display: table; width: 100%;user-select: none;',
       },
 
       getMjmlTemplate() {
         return {
-          start: `<mjml><mj-body><mj-section><mj-column>`,
-          end: `</mj-column></mj-section></mj-body></mjml>`,
+          start: `<mjml><mj-body><mj-column>`,
+          end: `</mj-column></mj-body></mjml>`,
         };
       },
 
       getTemplateFromEl(sandboxEl) {
-        return sandboxEl.querySelector('table table').innerHTML;
+        return sandboxEl.querySelector('tr').innerHTML;
       },
 
       getChildrenSelector() {

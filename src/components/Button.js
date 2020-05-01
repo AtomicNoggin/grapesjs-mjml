@@ -14,7 +14,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       defaults: {
         name: 'Button',
         draggable: '[data-gjs-type=mj-column], [data-gjs-type=mj-hero]',
-        highlightable: true,
+        highlightable: false,
         stylable: ['width', 'height',
           'background-color', 'container-background-color',
           'font-style', 'font-size', 'font-weight', 'font-family', 'color',
@@ -30,7 +30,9 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
           'font-weight': '400',
           'color': '#ffffff',
           'vertical-align': 'middle',
-          'padding': '10px 25px 10px 25px',
+          'padding-bottom': '10px',
+          'padding-right': '25px',
+          'padding-left': '25px',
           'align': 'center',
         },
         traits: ['href'],
@@ -40,20 +42,20 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
 
     view: {
       ...coreMjmlView,
-      tagName: 'table',
+      tagName: 'tr',
       attributes: {
         style: 'pointer-events: all; display: table; width: 100%',
       },
 
       getMjmlTemplate() {
         return {
-          start: `<mjml><mj-body><mj-section><mj-column>`,
-          end: `</mj-column></mj-section></mj-body></mjml>`,
+          start: `<mjml><mj-body><mj-column>`,
+          end: `</mj-column></mj-body></mjml>`,
         };
       },
 
       getTemplateFromEl(sandboxEl) {
-        return sandboxEl.querySelector('table table').outerHTML;
+        return sandboxEl.querySelector('tr').innerHTML;
       },
 
       getChildrenSelector() {
