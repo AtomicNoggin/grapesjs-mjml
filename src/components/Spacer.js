@@ -13,28 +13,28 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         name: 'Spacer',
         draggable: '[data-gjs-type=mj-column], [data-gjs-type=mj-hero]',
         droppable: false,
-        'style-default': { height: '20px' },
-        stylable: ['height', 'container-background-color'],
+        stylable: ['height', 'width', 'padding','padding-top','padding-right', 'padding-bottom','padding-left', 'container-background-color', 'vertical-align'],
+        traits:[],
         void: true,
       },
     },
 
     view: {
       ...coreMjmlView,
-      tagName: 'tr',
+      tagName: 'table',
       attributes: {
         style: 'pointer-events: all; display: table; width: 100%;user-select: none;',
       },
 
       getMjmlTemplate() {
         return {
-          start: `<mjml><mj-body><mj-column>`,
-          end: `</mj-column></mj-body></mjml>`,
+          start: `<mjml><mj-body><mj-section><mj-column>`,
+          end: `</mj-column></mj-section></mj-body></mjml>`,
         };
       },
 
       getTemplateFromEl(sandboxEl) {
-        return sandboxEl.querySelector('tr').innerHTML;
+        return sandboxEl.querySelector('table table').innerHTML;
       },
 
       getChildrenSelector() {

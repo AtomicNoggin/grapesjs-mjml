@@ -19,15 +19,18 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
           'text-decoration', 'text-transform',
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
         ],
-        'style-default': {
-          'font-size': '13px',
-          'padding-top': '25px',
-          'padding-bottom': '25px',
-          'padding-left': '10px',
-          'padding-right': '10px',
-          'text-transform': 'uppercase',
-        },
-        traits: ['href'],
+        traits: [
+          {label:"Link URL", name:"href", placeholder:"https://"},
+          {
+            label: 'Link Target', name: 'target', type: 'select',
+            options: [
+              { value: '', name: 'Default' },
+              { value: '_blank', name: 'New Window' },
+              { value: '_self', name: 'Same Window' },
+            ]
+          },
+          {label:"Link rel", name:"rel", placeholder:""},
+        ],
       },
     },
 

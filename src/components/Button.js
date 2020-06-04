@@ -14,48 +14,49 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       defaults: {
         name: 'Button',
         draggable: '[data-gjs-type=mj-column], [data-gjs-type=mj-hero]',
-        highlightable: false,
+        highlightable: true,
         stylable: ['width', 'height',
           'background-color', 'container-background-color',
           'font-style', 'font-size', 'font-weight', 'font-family', 'color',
-          'text-decoration', 'align',
+          'text-decoration', 'align','text-align',
           'vertical-align', 'text-transform',
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
+          'inner-padding', 'inner-padding-top', 'inner-padding-left', 'inner-padding-right', 'inner-padding-bottom',
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
-          'border', 'border-width', 'border-style', 'border-color',],
-        'style-default': {
-          'background-color': '#414141',
-          'border-radius': '3px',
-          'font-size': '13px',
-          'font-weight': '400',
-          'color': '#ffffff',
-          'vertical-align': 'middle',
-          'padding-bottom': '10px',
-          'padding-right': '25px',
-          'padding-left': '25px',
-          'align': 'center',
-        },
-        traits: ['href'],
+          'border-detached', 'border-width', 'border-style', 'border-color',
+        ],
+        traits: [
+          {name:"Link URL", property:"href", placeholder:"https://"},
+          {
+            name: 'Link Target', property: 'target', type: 'select',
+            options: [
+              { value: '', name: 'Default' },
+              { value: '_blank', name: 'New Window' },
+              { value: '_self', name: 'Same Window' },
+            ]
+          },
+          {label:"Link rel", name:"rel", placeholder:""},
+        ],
         // 'container-background-color', 'inner-padding'
       },
     },
 
     view: {
       ...coreMjmlView,
-      tagName: 'tr',
+      tagName: 'table',
       attributes: {
         style: 'pointer-events: all; display: table; width: 100%',
       },
 
       getMjmlTemplate() {
         return {
-          start: `<mjml><mj-body><mj-column>`,
-          end: `</mj-column></mj-body></mjml>`,
+          start: `<mjml><mj-body><mj-section><mj-column>`,
+          end: `</mj-column></mj-section></mj-body></mjml>`,
         };
       },
 
       getTemplateFromEl(sandboxEl) {
-        return sandboxEl.querySelector('tr').innerHTML;
+        return sandboxEl.querySelector('table table').outerHTML;
       },
 
       getChildrenSelector() {

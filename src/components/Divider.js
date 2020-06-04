@@ -25,8 +25,23 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         },
         stylable: [
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
-          'width', 'container-background-color',
+          'container-background-color',
           'border-detached', 'border-width', 'border-style', 'border-color'
+        ],
+        traits: [
+          {
+            type:'number',
+            name:'width',
+            label:'Divider Width',
+            min: 0,
+            defaults:'100%',
+            units: ['%', 'px']
+          },
+          {
+            name: "container-background-color",
+            label: "Container Background",
+            type: "color",
+          },
         ],
         void: true,
       },

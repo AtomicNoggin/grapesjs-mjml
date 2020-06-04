@@ -4,7 +4,6 @@ import { isComponentType } from './index.js';
 
 export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => {
   const type = 'mj-column';
-  const clmPadd = opt.columnsPadding;
 
   dc.addType(type, {
     isComponent: isComponentType(type),
@@ -14,9 +13,19 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
         name: 'Column',
         draggable: '[data-gjs-type=mj-section]',
         stylable: [
-          'background-color', 'vertical-align', 'width',
+          'background-color', 'vertical-align',
+          'border-detached', 'border-width', 'border-style', 'border-color',
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
-          'border', 'border-width', 'border-style', 'border-color',
+          'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
+        ],
+        traits:[
+          {
+            type:'number',
+            name:'width',
+            label:'Column width',
+            min: 0,
+            units: ['%', 'px']
+          },
         ],
       },
     },
@@ -25,14 +34,17 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
       ...coreMjmlView,
       tagName: 'div',
       attributes: {
-        style: 'pointer-events: all;' + (clmPadd ? `padding: ${clmPadd};` : ''),
+        style: 'pointer-events: all;',
       },
 
       getTemplateFromMjml() {
         let mjmlTmpl = this.getMjmlTemplate();
-        let innerMjml = this.getInnerMjmlTemplate();
-        const htmlOutput = mjml2html(`${mjmlTmpl.start}
-          ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`);
+        // add an mj-spacer to ensure the full table renders
+        let innerMjml = this.getInnerMjmlTemplate({'vertical-align':'top'});
+        const mjmlInput = `${mjmlTmpl.start}
+        ${innerMjml.start}<mj-spacer />${innerMjml.end}${mjmlTmpl.end}`;
+
+        const htmlOutput = mjml2html(mjmlInput);
         let html = htmlOutput.html;
 
         // I need styles for responsive columns
@@ -47,18 +59,35 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
         let content = html.replace(/<body(.*)>/, '<body>');
         let start = content.indexOf('<body>') + 6;
         let end = content.indexOf('</body>');
-        sandboxEl.innerHTML = content.substring(start, end).trim();
+        content = content.substring(start, end).trim();
+        sandboxEl.innerHTML = content;
         let componentEl = this.getTemplateFromEl(sandboxEl);
+        // remove the dummy mj-spacer
+        const childContainer = componentEl.querySelector(this.getChildrenSelector());
+        while (childContainer.lastChild) {
+          childContainer.removeChild(childContainer.lastChild)
+        }
 
         // Copy all rendered attributes (TODO need for all)
-        let attributes = {};
+        let attributes = {
+        };
         const elAttrs = componentEl.attributes;
 
         for (let elAttr, i = 0, len = elAttrs.length; i < len; i++) {
           elAttr = elAttrs[i];
           attributes[elAttr.name] = elAttr.value;
         }
-
+        /*
+        console.groupCollapsed('getTemplateFromMjml ' + this.model.attributes.tagName)
+        console.log("=================================================");
+        console.log(mjmlInput);
+        console.log("+++++++++++++++++++++++++++++++++++++++++++++++++");
+        console.log(content);
+        console.log("+++++++++++++++++++++++++++++++++++++++++++++++++");
+        console.log(componentEl.innerHTML);
+        console.log("=================================================");
+        console.groupEnd('getTemplateFromMjml ' + this.model.attributes.tagName)
+        */
         return {
           attributes,
           content: componentEl.innerHTML,
@@ -89,13 +118,12 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
           model.attributes.type && 
           model.attributes.type.toLowerCase() !== "textnode"
         ).length - 1;
-        console.log(this.model.collection)
         cols = cols ? cols : 0;
-        let addColmn = Array(cols).fill('<mj-column></mj-column>').join('');
+        let addColumn = Array(cols).fill('<mj-column></mj-column>').join('');
 
         return {
           start: `<mjml><mj-body><mj-section>`,
-          end: `${addColmn}</mj-section></mj-body></mjml>`,
+          end: `${addColumn}</mj-section></mj-body></mjml>`,
         };
       },
 
@@ -104,7 +132,8 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
       },
 
       getChildrenSelector() {
-        return 'table';
+        debugger;
+        return 'div > table > tbody > tr > td';
       },
     },
   });

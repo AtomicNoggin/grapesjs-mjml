@@ -64,8 +64,8 @@ export default (editor, opt = {}) => {
     },
 
 
-    getMjmlAttributes() {
-      let attr = this.get('attributes') || {};
+    getMjmlAttributes(defaults) {
+      let attr = this.get('attributes') || defaults || {};
       delete attr.style;
       let src = this.get('src');
       if (src)
@@ -150,10 +150,10 @@ export default (editor, opt = {}) => {
     },
 
 
-    getInnerMjmlTemplate() {
+    getInnerMjmlTemplate(defaultAttrs) {
       const model = this.model;
       let tagName = model.get('tagName');
-      let attr = model.getMjmlAttributes();
+      let attr = model.getMjmlAttributes(defaultAttrs);
       let strAttr = '';
 
       for (let prop in attr) {
@@ -177,15 +177,28 @@ export default (editor, opt = {}) => {
     getTemplateFromMjml() {
       let mjmlTmpl = this.getMjmlTemplate();
       let innerMjml = this.getInnerMjmlTemplate();
-      const htmlOutput = mjml2html(`${mjmlTmpl.start}
-        ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`);
+      const mjmlInput = `${mjmlTmpl.start}
+      ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`;
+      const htmlOutput = mjml2html(mjmlInput);
       let html = htmlOutput.html;
       html = html.replace(/<body(.*)>/, '<body>');
       let start = html.indexOf('<body>') + 6;
       let end = html.indexOf('</body>');
       html = html.substring(start, end).trim();
       sandboxEl.innerHTML = html;
-      return this.getTemplateFromEl(sandboxEl);
+      const templateOutput = this.getTemplateFromEl(sandboxEl)
+      /* commented out for future debugging
+      console.groupCollapsed('getTemplateFromMjml ' + this.model.attributes.tagName)
+      console.log("=================================================");
+      console.log(mjmlInput);
+      console.log("+++++++++++++++++++++++++++++++++++++++++++++++++");
+      console.log(html);
+      console.log("+++++++++++++++++++++++++++++++++++++++++++++++++");
+      console.log(templateOutput);
+      console.log("=================================================");
+      console.groupEnd('getTemplateFromMjml ' + this.model.attributes.tagName)
+      */
+      return templateOutput;
     },
 
 
@@ -195,7 +208,7 @@ export default (editor, opt = {}) => {
      */
     renderChildren: function (appendChildren) {
       var container = this.getChildrenContainer();
-
+  
       // This trick will help perfs by caching children
       if (!appendChildren) {
         this.componentsView = new ComponentsView({

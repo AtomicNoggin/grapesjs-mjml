@@ -4,6 +4,8 @@ import loadCommands from './commands';
 import loadButtons from './buttons';
 import loadStyle from './style';
 import mjml2html from 'mjml';
+import { registerDependencies } from 'mjml-validator';
+import { registerComponent, BodyComponent } from 'mjml-core';
 
 const masterPlugin = (editor, opt = {}) => {
   const config = editor.getConfig();
@@ -101,3 +103,6 @@ export const commandsPlugin = masterPlugin.commandsPlugin =  loadCommands;
 export const buttonsPlugin = masterPlugin.buttonsPlugin = loadButtons;
 export const stylePlugin = masterPlugin.stylePlugin = loadStyle;
 export const mjml2htmlCommand = masterPlugin.mjml2htmlCommand = mjml2html;
+export const mjmlRegisterDependencies = masterPlugin.mjmlRegisterDependencies = registerDependencies
+export const mjmlRegisterComponent = masterPlugin.mjmlRegisterComponent = registerComponent
+export const MjmlBodyComponent  = masterPlugin.MjmlBodyComponent = BodyComponent;

@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-mjml",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "description": "MJML Componenets integration in GrapesJS",
   "main": "dist/grapesjs-mjml.min.js",
   "scripts": {
@@ -23,7 +23,9 @@
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "mjml": "4.4.1"
+    "mjml": "4.5.1",
+    "mjml-core": "4.5.1",
+    "mjml-validator": "4.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
