@@ -4,8 +4,31 @@ import loadCommands from './commands';
 import loadButtons from './buttons';
 import loadStyle from './style';
 import mjml2html from 'mjml';
+// pass through all the mjml tags and components so they can be extended as needed later on.
 import { registerDependencies } from 'mjml-validator';
-import { registerComponent, BodyComponent } from 'mjml-core';
+import { registerComponent, BodyComponent, HeadComponent } from 'mjml-core';
+import MjBody from 'mjml-button';
+import MjButton from 'mjml-button';
+import MjCarousel from 'mjml-carousel';
+import MjColumn from 'mjml-column';
+import MjDivider from 'mjml-divider';
+import MjGroup from 'mjml-group';
+import MjAttributes from 'mjml-head-attributes';
+import MjBreakpoint from 'mjml-head-breakpoint';
+import MjPreview from 'mjml-head-preview';
+import MjStyle from 'mjml-head-style';
+import MjTitle from 'mjml-head-title';
+import MjFont from 'mjml-head-font';
+import MjHero from 'mjml-hero';
+import MjImage from 'mjml-image';
+import MjNavbar from 'mjml-navbar';
+import MjRaw from 'mjml-raw';
+import MjSection from 'mjml-section';
+import MjSocial from 'mjml-social';
+import MjSpacer from 'mjml-spacer';
+import MjTable from 'mjml-Table';
+import MjText from 'mjml-text';
+import MjWrapper from 'mjml-wrapper';
 
 const masterPlugin = (editor, opt = {}) => {
   const config = editor.getConfig();
@@ -106,3 +129,27 @@ export const mjml2htmlCommand = masterPlugin.mjml2htmlCommand = mjml2html;
 export const mjmlRegisterDependencies = masterPlugin.mjmlRegisterDependencies = registerDependencies
 export const mjmlRegisterComponent = masterPlugin.mjmlRegisterComponent = registerComponent
 export const MjmlBodyComponent  = masterPlugin.MjmlBodyComponent = BodyComponent;
+export const MjmlHeadComponent  = masterPlugin.MjmlHeadComponent = HeadComponent;
+export const BaseMjBody = masterPlugin.BaseMjBody = MjBody;
+export const BaseMjButton = masterPlugin.BaseMjButton = MjButton;
+export const BaseMjCarousel = masterPlugin.BaseMjCarousel = MjCarousel;
+export const BaseMjColumn = masterPlugin.BaseMjColumn = MjColumn;
+export const BaseMjDivider = masterPlugin.BaseMjDivider = MjDivider;
+export const BaseMjGroup = masterPlugin.BaseMjGroup = MjGroup;
+export const BaseMjAttributes = masterPlugin.BaseMjAttributes = MjAttributes;
+export const BaseMjBreakpoint = masterPlugin.BaseMjBreakpoint = MjBreakpoint;
+export const BaseMjPreview = masterPlugin.BaseMjPreview = MjPreview;
+export const BaseMjStyle = masterPlugin.BaseMjStyle = MjStyle;
+export const BaseMjTitle = masterPlugin.BaseMjTitle = MjTitle;
+export const BaseMjFont = masterPlugin.BaseMjFont = MjFont;
+export const BaseMjHero = masterPlugin.BaseMjHero = MjHero;
+export const BaseMjImage = masterPlugin.BaseMjImage = MjImage;
+export const BaseMjNavbar = masterPlugin.BaseMjNavbar = MjNavbar;
+export const BaseMjRaw = masterPlugin.BaseMjRaw = MjRaw;
+export const BaseMjSection = masterPlugin.BaseMjSection = MjSection;
+export const BaseMjSocial = masterPlugin.BaseMjSocial = MjSocial;
+export const BaseMjSpacer = masterPlugin.BaseMjSpacer = MjSpacer;
+export const BaseMjTable = masterPlugin.BaseMjTable = MjTable;
+export const BaseMjText = masterPlugin.BaseMjText = MjText;
+export const BaseMjWrapper = masterPlugin.BaseMjWrapper = MjWrapper;
+
