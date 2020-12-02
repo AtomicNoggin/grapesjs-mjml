@@ -7,7 +7,7 @@ import mjml2html from 'mjml';
 // pass through all the mjml tags and components so they can be extended as needed later on.
 import { registerDependencies } from 'mjml-validator';
 import { registerComponent, BodyComponent, HeadComponent } from 'mjml-core';
-import MjBody from 'mjml-button';
+import MjBody from 'mjml-body';
 import MjButton from 'mjml-button';
 import {Carousel as MjCarousel, CarouselImage as MjCarouselImage} from 'mjml-carousel';
 import MjColumn from 'mjml-column';
@@ -26,7 +26,7 @@ import MjRaw from 'mjml-raw';
 import MjSection from 'mjml-section';
 import {Social as MjSocial, SocialElement as MjSocialElement} from 'mjml-social';
 import MjSpacer from 'mjml-spacer';
-import MjTable from 'mjml-Table';
+import MjTable from 'mjml-table';
 import MjText from 'mjml-text';
 import MjWrapper from 'mjml-wrapper';
 
