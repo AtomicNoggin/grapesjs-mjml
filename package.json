@@ -23,9 +23,9 @@
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "mjml": "4.5.1",
-    "mjml-core": "4.5.1",
-    "mjml-validator": "4.5.0"
+    "mjml": "4.10.3",
+    "mjml-core": "4.10.3",
+    "mjml-validator": "4.10.3"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",

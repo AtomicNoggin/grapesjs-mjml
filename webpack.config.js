@@ -41,6 +41,7 @@ module.exports = (env, options) => {
     },
     resolve: {
       alias: {
+        'path':path.resolve(__dirname, 'mocks/path'),
         'fs': path.resolve(__dirname, 'mocks/fs'),
         'uglify-js': path.resolve(__dirname, 'mocks/uglify-js'),
       }
